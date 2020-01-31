@@ -1,0 +1,106 @@
+﻿  C_Asm.cpp
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(23,2): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,3): error C2065: 'MOV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,7): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,7): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,18): error C2065: 'Assign': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,25): error C2143: syntax error: missing ';' before 'constant'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,27): error C2146: syntax error: missing ';' before identifier 'to'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,27): error C2065: 'to': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,30): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(25,30): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(26,3): error C2146: syntax error: missing ';' before identifier 'IMUL'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(26,3): error C2065: 'IMUL': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(26,8): error C2146: syntax error: missing ';' before identifier 'num2'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(26,17): error C2065: 'Multiply': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(26,26): error C2146: syntax error: missing ';' before identifier 'by'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(26,26): error C2065: 'by': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(26,29): error C2146: syntax error: missing ';' before identifier 'num2'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,3): error C2146: syntax error: missing ';' before identifier 'MOV'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,3): error C2065: 'MOV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,7): error C2146: syntax error: missing ';' before identifier 'ECX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,7): error C2065: 'ECX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,18): error C2065: 'Assign': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,25): error C2143: syntax error: missing ';' before 'constant'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,27): error C2146: syntax error: missing ';' before identifier 'to'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,27): error C2065: 'to': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,30): error C2146: syntax error: missing ';' before identifier 'ECX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(27,30): error C2065: 'ECX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,3): error C2146: syntax error: missing ';' before identifier 'IDIV'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,3): error C2065: 'IDIV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,8): error C2146: syntax error: missing ';' before identifier 'ECX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,8): error C2065: 'ECX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,16): error C2065: 'Divide': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,23): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,23): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,27): error C2146: syntax error: missing ';' before identifier 'by'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,27): error C2065: 'by': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,30): error C2146: syntax error: missing ';' before identifier 'ECX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(28,30): error C2065: 'ECX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,3): error C2146: syntax error: missing ';' before identifier 'MOV'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,3): error C2065: 'MOV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,7): error C2146: syntax error: missing ';' before identifier 'result'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,15): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,21): error C2065: 'Assign': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,28): error C2146: syntax error: missing ';' before identifier 'result'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,35): error C2146: syntax error: missing ';' before identifier 'answer'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,35): error C2065: 'answer': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,42): error C2146: syntax error: missing ';' before identifier 'in'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,42): error C2065: 'in': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,45): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(29,45): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(30,2): error C2143: syntax error: missing ';' before '}'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(41,2): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,3): error C2065: 'MOV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,7): error C2146: syntax error: missing ';' before identifier 'EDX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,7): error C2065: 'EDX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,18): error C2065: 'Assign': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,25): error C2143: syntax error: missing ';' before 'constant'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,27): error C2146: syntax error: missing ';' before identifier 'to'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,27): error C2065: 'to': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,30): error C2146: syntax error: missing ';' before identifier 'EDX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(43,30): error C2065: 'EDX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,3): error C2146: syntax error: missing ';' before identifier 'MOV'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,3): error C2065: 'MOV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,7): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,7): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,20): error C2065: 'Assign': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,27): error C2146: syntax error: missing ';' before identifier 'num1'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,32): error C2146: syntax error: missing ';' before identifier 'to'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,32): error C2065: 'to': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,35): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(44,35): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,3): error C2146: syntax error: missing ';' before identifier 'ADC'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,3): error C2065: 'ADC': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,7): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,7): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,20): error C2065: 'Add': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,24): error C2146: syntax error: missing ';' before identifier 'num2'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,29): error C2143: syntax error: missing ';' before 'using'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(45,38): error C2146: syntax error: missing ';' before identifier 'to'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(46,18): error C2065: 'Assign': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(47,16): error C2065: 'Divide': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(47,23): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(47,23): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(47,27): error C2146: syntax error: missing ';' before identifier 'by'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(47,27): error C2065: 'by': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(47,30): error C2146: syntax error: missing ';' before identifier 'ECX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(47,30): error C2065: 'ECX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,3): error C2146: syntax error: missing ';' before identifier 'MOV'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,3): error C2065: 'MOV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,7): error C2146: syntax error: missing ';' before identifier 'result'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,15): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,21): error C2065: 'Assign': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,28): error C2146: syntax error: missing ';' before identifier 'result'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,35): error C2146: syntax error: missing ';' before identifier 'answer'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,35): error C2065: 'answer': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,42): error C2146: syntax error: missing ';' before identifier 'in'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,42): error C2065: 'in': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,45): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(48,45): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(49,2): error C2143: syntax error: missing ';' before '}'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(58,2): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(60,3): error C2065: 'MOV': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(60,7): error C2146: syntax error: missing ';' before identifier 'EAX'
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(60,7): error C2065: 'EAX': undeclared identifier
+C:\Users\Miguel\Documents\GitHub\SUNY-ACC-Asm\C_Asm\C_Asm\C_Asm.cpp(60,10): fatal error C1003: error count exceeds 100; stopping compilation

@@ -19,6 +19,7 @@ int main()
 	cout << "Question 1:" << endl;
 	cout << "Without Assembly: " << result << endl;
 
+	// Some architecture might not like this
 	_asm
 	{
 		MOV EAX, 5			; Assign 5 to EAX
