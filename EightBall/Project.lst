@@ -1,0 +1,592 @@
+Microsoft (R) Macro Assembler (x64) Version 14.24.28316.0   01/31/20 16:31:48
+eightBall.asm						     Page 1 - 1
+
+
+				; Miguel Calderon
+				; Magic 8 ball emulator
+				; Calling a subroutine in 64-bit mode    (eightBall.asm)
+
+				 ;Irvine64 Prototypes
+				 WriteString PROTO
+				 Random64 PROTO
+				 Randomize PROTO
+				 Crlf PROTO
+				 ReadString PROTO
+				 ExitProcess PROTO
+
+				 ;Add appropriate prompts:
+ 00000000			.data
+ 00000000 50 69 63 6B 20		prompt1 byte  "Pick your lucky number:  ", 0
+	   79 6F 75 72 20
+	   6C 75 63 6B 79
+	   20 6E 75 6D 62
+	   65 72 3A 20 20
+	   00
+ 0000001A 57 68 61 74 20		prompt2 byte  "What is your question?  ", 0
+	   69 73 20 79 6F
+	   75 72 20 71 75
+	   65 73 74 69 6F
+	   6E 3F 20 20 00
+ 00000033 4D 61 67 69 63		prompt3 byte  "Magic 8 Ball says:  ", 0
+	   20 38 20 42 61
+	   6C 6C 20 73 61
+	   79 73 3A 20 20
+	   00
+ 00000048				keyVal QWORD ?
+	   0000000000000000
+ 00000050				buffer QWORD ?
+	   0000000000000000
+ 00000058 53 74 61 79 20		answer0 byte  "Stay positive, All will fall into place", 0
+	   70 6F 73 69 74
+	   69 76 65 2C 20
+	   41 6C 6C 20 77
+	   69 6C 6C 20 66
+	   61 6C 6C 20 69
+	   6E 74 6F 20 70
+	   6C 61 63 65 00
+ 00000080 48 65 6C 6C 20		answer1 byte  "Hell no, not with that attitude", 0
+	   6E 6F 2C 20 6E
+	   6F 74 20 77 69
+	   74 68 20 74 68
+	   61 74 20 61 74
+	   74 69 74 75 64
+	   65 00
+ 000000A0 49 27 6D 20 73		answer2 byte  "I'm sure Luke knows", 0
+	   75 72 65 20 4C
+	   75 6B 65 20 6B
+	   6E 6F 77 73 00
+ 000000B4 57 68 65 6E 20		answer3 byte  "When Hell freezes over", 0
+	   48 65 6C 6C 20
+	   66 72 65 65 7A
+	   65 73 20 6F 76
+	   65 72 00
+ 000000CB 49 20 64 6F 6E		answer4 byte  "I don't know maybe, Not feeling it", 0
+	   27 74 20 6B 6E
+	   6F 77 20 6D 61
+	   79 62 65 2C 20
+	   4E 6F 74 20 66
+	   65 65 6C 69 6E
+	   67 20 69 74 00
+ 000000EE 53 69 67 6E 73		answer5 byte  "Signs point to yes", 0
+	   20 70 6F 69 6E
+	   74 20 74 6F 20
+	   79 65 73 00
+ 00000101 48 61 68 61 20		answer6 byte  "Haha yea sure, keep thinking that", 0
+	   79 65 61 20 73
+	   75 72 65 2C 20
+	   6B 65 65 70 20
+	   74 68 69 6E 6B
+	   69 6E 67 20 74
+	   68 61 74 00
+ 00000123 30 00				answer7 byte  "0", 0
+ 00000125 31 00				answer8 byte  "1", 0
+ 00000127 43 6F 75 6E 74		answer9 byte  "Count to 10 and then 10 to 1 Recursivly", 0
+	   20 74 6F 20 31
+	   30 20 61 6E 64
+	   20 74 68 65 6E
+	   20 31 30 20 74
+	   6F 20 31 20 52
+	   65 63 75 72 73
+	   69 76 6C 79 00
+ 0000014F 41 73 6B 20 4D		answer10 byte "Ask Marc", 0
+	   61 72 63 00
+ 00000158 41 73 20 49 20		answer11 byte "As I see it, YES!", 0
+	   73 65 65 20 69
+	   74 2C 20 59 45
+	   53 21 00
+ 0000016A 4D 79 20 73 6F		answer12 byte "My sources can confirm this", 0
+	   75 72 63 65 73
+	   20 63 61 6E 20
+	   63 6F 6E 66 69
+	   72 6D 20 74 68
+	   69 73 00
+ 00000186 32 2B 32 3D 34		answer13 byte "2+2=4 so yeah, you will", 0
+	   20 73 6F 20 79
+	   65 61 68 2C 20
+	   79 6F 75 20 77
+	   69 6C 6C 00
+ 0000019E 59 6F 75 20 62		answer14 byte "You bet pal!", 0
+	   65 74 20 70 61
+	   6C 21 00
+ 000001AB 59 65 73 21 20		answer15 byte "Yes! with hardwork!", 0
+	   77 69 74 68 20
+	   68 61 72 64 77
+	   6F 72 6B 21 00
+ 000001BF 4F 6E 6C 79 20		answer16 byte "Only if you do it right", 0
+	   69 66 20 79 6F
+	   75 20 64 6F 20
+	   69 74 20 72 69
+	   67 68 74 00
+ 000001D7 59 6F 75 72 20		answer17 byte "Your life is for you to decide", 0
+	   6C 69 66 65 20
+	   69 73 20 66 6F
+	   72 20 79 6F 75
+	   20 74 6F 20 64
+	   65 63 69 64 65
+	   00
+ 000001F6 4B 6E 6F 77 6C		answer18 byte "Knowledge is power...and I just ran out", 0
+	   65 64 67 65 20
+	   69 73 20 70 6F
+	   77 65 72 2E 2E
+	   2E 61 6E 64 20
+	   49 20 6A 75 73
+	   74 20 72 61 6E
+	   20 6F 75 74 00
+ 0000021E 43 6F 6E 63 65		answer19 byte "Concentrate and ask again", 0
+	   6E 74 72 61 74
+	   65 20 61 6E 64
+	   20 61 73 6B 20
+	   61 67 61 69 6E
+	   00
+ 00000238 50 61 74 69 65		answer20 byte "Patience, you must have padawan", 0
+	   6E 63 65 2C 20
+	   79 6F 75 20 6D
+	   75 73 74 20 68
+	   61 76 65 20 70
+	   61 64 61 77 61
+	   6E 00
+					
+ 00000000			.code
+ = 00000014			DIVISOR EQU QWORD PTR 20						;Constant for divisor
+ 00000000			 main PROC
+ 00000000  48/ C7 C1		 MOV RCX, 3										;# of Questions
+	   00000003
+ 00000007			 MAGIC0: 										;LABEL for start jump
+
+					;Output message to ask for lucky number:
+ 00000007  48/ BA			MOV RDX, OFFSET prompt1						;Assign address of prompt1 to RDX
+	   0000000000000000 R
+ 00000011  E8 00000000 E		CALL WriteString							;Write whats in RDX
+ 00000016  E8 00000000 E		call Crlf									;newline
+
+					; Determine random number:
+ 0000001B  48/ 8B F1			MOV RSI, RCX								;Preserve RCX before Rand
+ 0000001E  E8 00000000 E		CALL Randomize								;Random Seed
+ 00000023  E8 00000000 E		CALL RANDOM64								;Grab pseudo random #
+ 00000028  E8 00000000 E		call Crlf									;newline
+ 0000002D  48/ 8B CE			MOV RCX, RSI								;Preserve RCX after Rand
+ 00000030  EB 07			JMP SKIPMAGIC0								;jump over Do While condition
+
+ 00000032  E2 D3		MAGIC1: LOOP MAGIC0								; loop up one
+ 00000034  E9 00000284		JMP ENDIF2										;Jump to end of program
+
+ 00000039				SKIPMAGIC0:
+					; Convert number to the appropriate range:
+ 00000039  48/ C7 C2			MOV RDX, 0									;Assign RDX 0
+	   00000000
+ 00000040  48/ C7 C3			MOV RBX, DIVISOR							;Assign RBX what to # of prompts -1
+	   00000014
+ 00000047  48/ F7 F3			DIV RBX										;Divide RAX by Divisor
+ 0000004A  48/ 89 15			MOV keyVal, RDX								;Assign KeyVal the remainder
+	   00000048 R
+
+ 00000051  48/ 8B F1			MOV RSI, RCX								;Preserve RCX after ReadString
+
+					;Output message to ask for question:
+ 00000054  48/ BA			MOV RDX, OFFSET prompt2						;Assign address of prompt2 to RDX
+	   000000000000001A R
+ 0000005E  E8 00000000 E		CALL WriteString							;Write whats in the EDX
+					;call Crlf									;newline
+ 00000063  E8 00000000 E		call Crlf									;newline
+ 00000068  BA 00000050 R		MOV EDX, OFFSET buffer						;set EDX to elements of buffer
+ 0000006D  B9 00000008			MOV ECX, SIZEOF buffer						;set ECX to size of buffer
+ 00000072  E8 00000000 E		CALL ReadString
+
+ 00000077  48/ 8B CE			MOV RCX, RSI								;Preserve RCX after ReadString
+
+					;Output message to to answer question:	
+ 0000007A  48/ BA			MOV RDX, OFFSET prompt3						;Assign address of prompt3 to RDX
+	   0000000000000033 R
+ 00000084  E8 00000000 E		CALL WriteString							;write prompt3 to screen
+ 00000089  E8 00000000 E		call Crlf									;newline
+ 0000008E  EB 02			JMP ANS20									;Jump to first Prompt
+
+ 00000090  EB A0		MAGIC2: JMP MAGIC1								;last cutoff jump from bottom
+				;JMP ENDIF2										;Jump to end of program
+
+
+						;_______Answer 20________			
+ 00000092					ANS20:						;Go to (jump to) for 20
+ 00000092  48/ 83 3D				CMP keyVal, 20				;Compare RAX with 20
+	   00000048 R 14
+ 0000009A  75 10				JNE	ANS19					;If less GO TO next down
+ 0000009C  48/ BA				MOV RDX, OFFSET answer20	;Assign prompt to RAX
+	   0000000000000238 R
+ 000000A6  0F 84 000001F8			JZ ENDIF1					;break
+
+						;_______Answer 19________	
+ 000000AC					ANS19:						;Go to (jump to) for 19
+ 000000AC  48/ 83 3D				CMP keyVal, 19				;Compare RAX with 19
+	   00000048 R 13
+ 000000B4  75 10				JNE	ANS18					;If less GO TO next down
+ 000000B6  48/ BA				MOV RDX, OFFSET answer19	;Assign prompt to RAX
+	   000000000000021E R
+ 000000C0  0F 84 000001DE			JZ ENDIF1					;break
+
+						;_______Answer 18________	
+ 000000C6					ANS18:						;Go to (jump to) for 18
+ 000000C6  48/ 83 3D				CMP keyVal, 18				;Compare RAX with 18
+	   00000048 R 12
+ 000000CE  75 10				JNE	ANS17					;If less GO TO next down
+ 000000D0  48/ BA				MOV RDX, OFFSET answer18	;Assign prompt to RAX
+	   00000000000001F6 R
+ 000000DA  0F 84 000001C4			JZ ENDIF1					;break
+
+						;_______Answer 17________	
+ 000000E0					ANS17:						;Go to (jump to) for 17
+ 000000E0  48/ 83 3D				CMP keyVal, 17				;Compare RAX with 17
+	   00000048 R 11
+ 000000E8  75 10				JNE	ANS16					;If less GO TO next down
+ 000000EA  48/ BA				MOV RDX, OFFSET answer17	;Assign prompt to RAX
+	   00000000000001D7 R
+ 000000F4  0F 84 000001AA			JZ ENDIF1					;break
+
+						;_______Answer 16________	
+ 000000FA					ANS16:						;Go to (jump to) for 16
+ 000000FA  48/ 83 3D				CMP keyVal, 16				;Compare RAX with 16
+	   00000048 R 10
+ 00000102  75 14				JNZ	ANS15					;If less GO TO next down
+ 00000104  48/ BA				MOV RDX, OFFSET answer16	;Assign prompt to RAX
+	   00000000000001BF R
+ 0000010E  E9 00000191				JMP ENDIF1					;break
+
+ 00000113  E9 FFFFFF78		MAGIC3: JMP MAGIC2					;cutoff from bottom
+
+						;_______Answer 15________	
+ 00000118					ANS15:						;Go to (jump to) for 15
+ 00000118  48/ 83 3D				CMP keyVal, 15				;Compare RAX with 15
+	   00000048 R 0F
+ 00000120  75 10				JNE	ANS14					;If less GO TO next down
+ 00000122  48/ BA				MOV RDX, OFFSET answer15	;Assign prompt to RAX
+	   00000000000001AB R
+ 0000012C  0F 84 00000172			JZ ENDIF1					;break
+
+						;_______Answer 14________	
+ 00000132					ANS14:						;Go to (jump to) for 14
+ 00000132  48/ 83 3D				CMP keyVal, 14				;Compare RAX with 14
+	   00000048 R 0E
+ 0000013A  75 10				JNE	ANS13					;If less GO TO next down
+ 0000013C  48/ BA				MOV RDX, OFFSET answer14	;Assign prompt to RAX
+	   000000000000019E R
+ 00000146  0F 84 00000158			JZ ENDIF1					;break
+
+						;_______Answer 13________	
+ 0000014C					ANS13:						;Go to (jump to) for 13
+ 0000014C  48/ 83 3D				CMP keyVal, 13				;Compare RAX with 13
+	   00000048 R 0D
+ 00000154  75 10				JNE	ANS12					;If less GO TO next down
+ 00000156  48/ BA				MOV RDX, OFFSET answer13	;Assign prompt to RAX
+	   0000000000000186 R
+ 00000160  0F 84 0000013E			JZ ENDIF1					;break
+
+						;_______Answer 12________	
+ 00000166					ANS12:						;Go to (jump to) for 12
+ 00000166  48/ 83 3D				CMP keyVal, 12				;Compare RAX with 12
+	   00000048 R 0C
+ 0000016E  75 10				JNE	ANS11					;If less GO TO next down
+ 00000170  48/ BA				MOV RDX, OFFSET answer12	;Assign prompt to RAX
+	   000000000000016A R
+ 0000017A  0F 84 00000124			JZ ENDIF1					;break
+
+						;_______Answer 11________	
+ 00000180					ANS11:						;Go to (jump to) for 11
+ 00000180  48/ 83 3D				CMP keyVal, 11				;Compare RAX with 11
+	   00000048 R 0B
+ 00000188  75 14				JNZ	ANS10					;If less GO TO next down
+ 0000018A  48/ BA				MOV RDX, OFFSET answer11	;Assign prompt to RAX
+	   0000000000000158 R
+ 00000194  E9 0000010B				JMP ENDIF1					;break
+
+ 00000199  E9 FFFFFF75		MAGIC4:JMP MAGIC3					;cutoff jump from bottom
+
+						;_______Answer 10________	
+ 0000019E					ANS10:						;Go to (jump to) for 10
+ 0000019E  48/ 83 3D				CMP keyVal, 10				;Compare RAX with 10
+	   00000048 R 0A
+ 000001A6  75 10				JNE	ANS9					;If less GO TO next down
+ 000001A8  48/ BA				MOV RDX, OFFSET answer10	;Assign prompt to RAX
+	   000000000000014F R
+ 000001B2  0F 84 000000EC			JZ ENDIF1					;break
+
+						;_______Answer 9________	
+ 000001B8					ANS9:						;Go to (jump to) for 9
+ 000001B8  48/ 83 3D				CMP keyVal, 9				;Compare RAX with 9
+	   00000048 R 09
+ 000001C0  75 10				JNE	ANS8					;If less GO TO next down
+ 000001C2  48/ BA				MOV RDX, OFFSET answer9		;Assign prompt to RAX
+	   0000000000000127 R
+ 000001CC  0F 84 000000D2			JZ ENDIF1					;break
+
+						;_______Answer 8________	
+ 000001D2					ANS8:						;Go to (jump to) for 8
+ 000001D2  48/ 83 3D				CMP keyVal, 8				;Compare RAX with 8
+	   00000048 R 08
+ 000001DA  75 10				JNE	ANS7					;If less GO TO next down
+ 000001DC  48/ BA				MOV RDX, OFFSET answer8		;Assign prompt to RAX
+	   0000000000000125 R
+ 000001E6  0F 84 000000B8			JZ ENDIF1					;break
+
+						;_______Answer 7________	
+ 000001EC					ANS7:						;Go to (jump to) for 7
+ 000001EC  48/ 83 3D				CMP keyVal, 7				;Compare RAX with 7
+	   00000048 R 07
+ 000001F4  75 10				JNE	ANS6					;If less GO TO next down
+ 000001F6  48/ BA				MOV RDX, OFFSET answer7		;Assign prompt to RAX
+	   0000000000000123 R
+ 00000200  0F 84 0000009E			JZ ENDIF1					;break
+
+						;_______Answer 6________	
+ 00000206					ANS6:						;Go to (jump to) for 6
+ 00000206  48/ 83 3D				CMP  keyVal, 6				;Compare RAX with 6
+	   00000048 R 06
+ 0000020E  75 14				JNZ	ANS5					;If less GO TO next down
+ 00000210  48/ BA				MOV RDX, OFFSET answer6		;Assign prompt to RAX
+	   0000000000000101 R
+ 0000021A  E9 00000085				JMP ENDIF1					;break
+
+ 0000021F  E9 FFFFFF75		MAGIC5: JMP MAGIC4					;cutoff from bottom
+
+						;_______Answer 5________	
+ 00000224					ANS5:						;Go to (jump to) for 5
+ 00000224  48/ 83 3D				CMP keyVal, 5				;Compare RAX with 5
+	   00000048 R 05
+ 0000022C  75 0C				JNE	ANS4					;If less GO TO next down
+ 0000022E  48/ BA				MOV RDX, OFFSET answer5		;Assign prompt to RAX
+	   00000000000000EE R
+ 00000238  74 6A				JZ ENDIF1					;break
+
+						;_______Answer 4________	
+ 0000023A					ANS4:						;Go to (jump to) for 4
+ 0000023A  48/ 83 3D				CMP keyVal, 4				;Compare RAX with 4
+	   00000048 R 04
+ 00000242  75 0C				JNE	ANS3					;If less GO TO next down
+ 00000244  48/ BA				MOV RDX, OFFSET answer4		;Assign prompt to RAX
+	   00000000000000CB R
+ 0000024E  74 54				JZ ENDIF1					;break
+
+						;_______Answer 3________	
+ 00000250					ANS3:						;Go to (jump to) for 3
+ 00000250  48/ 83 3D				CMP keyVal, 3				;Compare RAX with 3
+	   00000048 R 03
+ 00000258  75 0C				JNE	ANS2					;If less GO TO next down
+ 0000025A  48/ BA				MOV RDX, OFFSET answer3		;Assign prompt to RAX
+	   00000000000000B4 R
+ 00000264  74 3E				JZ ENDIF1					;break
+
+						;_______Answer 2________	
+ 00000266					ANS2:						;Go to (jump to) for 2
+ 00000266  48/ 83 3D				CMP keyVal, 2				;Compare RAX with 2
+	   00000048 R 02
+ 0000026E  75 0C				JNE	ANS1					;If less GO TO next down
+ 00000270  48/ BA				MOV RDX, OFFSET answer2		;Assign prompt to RAX
+	   00000000000000A0 R
+ 0000027A  74 28				JZ ENDIF1					;break
+
+						;_______Answer 1________	
+ 0000027C					ANS1:						;Go to (jump to) for 1
+ 0000027C  48/ 83 3D				CMP keyVal, 1				;Compare RAX with 1
+	   00000048 R 01
+ 00000284  75 0C				JNE	ANS0					;If less GO TO next down
+ 00000286  48/ BA				MOV RDX, OFFSET answer1		;Assign prompt to RAX
+	   0000000000000080 R
+ 00000290  74 12				JZ ENDIF1					;break
+
+						;_______Answer 0________	
+ 00000292					ANS0:						;Go to (jump to) for 0
+ 00000292  48/ 83 3D				CMP keyVal, 0				;Compare RAX with 0
+	   00000048 R 00
+ 0000029A  48/ BA				MOV RDX, OFFSET answer0		;Assign prompt to RAX
+	   0000000000000058 R
+
+
+ 000002A4					ENDIF1:						;the break
+
+					;Determine result:
+
+					;Output the message
+ 000002A4  E8 00000000 E		call WriteString			;Output message
+ 000002A9  E8 00000000 E		call Crlf					;newline
+ 000002AE  E8 00000000 E		call Crlf					;newline
+ 000002B3  E8 00000000 E		call Crlf					;newline
+
+ 000002B8  E9 FFFFFF62		JMP MAGIC5				;Start Island Hopping upwards
+ 000002BD				ENDIF2:				;end all jump
+
+				;CALL ReadString
+
+ 000002BD  B9 00000000		 mov  ecx,0				; Process return code
+ 000002C2  E8 00000000 E	 call    ExitProcess	;exit
+
+ 000002C7			main ENDP				;goodbye
+				END						;good day
+
+				comment HeyGui$e
+				~Apparently Do While Jumps have a max, so I had to Island Hop~
+
+				Output:
+
+				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				My sources can confirm this
+
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				Count to 10 and then 10 to 1
+
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				Your life is for you to decide
+
+				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				Hell no, not with that attitude
+
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				I'm sure Luke knows
+
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				Concentrate and ask again
+
+				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				Concentrate and ask again
+
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				Yes with hardwork!
+
+
+				Pick your lucky number:
+
+				What is your question?
+
+				Magic 8 Ball says:
+				When Hell freezes over
+
+				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+				You could say CIS 244 was a "Ball" 
+
+				Thanks for teaching us Marc!
+
+				HeyGui$e
+Microsoft (R) Macro Assembler (x64) Version 14.24.28316.0   01/31/20 16:31:48
+eightBall.asm						     Symbols 2 - 1
+
+
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+Crlf . . . . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+ExitProcess  . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+Random64 . . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+Randomize  . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+ReadString . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+WriteString  . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+main . . . . . . . . . . . . . .	P 	 00000000 _TEXT	Length= 000002C7 Public
+  MAGIC0 . . . . . . . . . . . .	L 	 00000007 _TEXT	
+  MAGIC1 . . . . . . . . . . . .	L 	 00000032 _TEXT	
+  SKIPMAGIC0 . . . . . . . . . .	L 	 00000039 _TEXT	
+  MAGIC2 . . . . . . . . . . . .	L 	 00000090 _TEXT	
+  ANS20  . . . . . . . . . . . .	L 	 00000092 _TEXT	
+  ANS19  . . . . . . . . . . . .	L 	 000000AC _TEXT	
+  ANS18  . . . . . . . . . . . .	L 	 000000C6 _TEXT	
+  ANS17  . . . . . . . . . . . .	L 	 000000E0 _TEXT	
+  ANS16  . . . . . . . . . . . .	L 	 000000FA _TEXT	
+  MAGIC3 . . . . . . . . . . . .	L 	 00000113 _TEXT	
+  ANS15  . . . . . . . . . . . .	L 	 00000118 _TEXT	
+  ANS14  . . . . . . . . . . . .	L 	 00000132 _TEXT	
+  ANS13  . . . . . . . . . . . .	L 	 0000014C _TEXT	
+  ANS12  . . . . . . . . . . . .	L 	 00000166 _TEXT	
+  ANS11  . . . . . . . . . . . .	L 	 00000180 _TEXT	
+  MAGIC4 . . . . . . . . . . . .	L 	 00000199 _TEXT	
+  ANS10  . . . . . . . . . . . .	L 	 0000019E _TEXT	
+  ANS9 . . . . . . . . . . . . .	L 	 000001B8 _TEXT	
+  ANS8 . . . . . . . . . . . . .	L 	 000001D2 _TEXT	
+  ANS7 . . . . . . . . . . . . .	L 	 000001EC _TEXT	
+  ANS6 . . . . . . . . . . . . .	L 	 00000206 _TEXT	
+  MAGIC5 . . . . . . . . . . . .	L 	 0000021F _TEXT	
+  ANS5 . . . . . . . . . . . . .	L 	 00000224 _TEXT	
+  ANS4 . . . . . . . . . . . . .	L 	 0000023A _TEXT	
+  ANS3 . . . . . . . . . . . . .	L 	 00000250 _TEXT	
+  ANS2 . . . . . . . . . . . . .	L 	 00000266 _TEXT	
+  ANS1 . . . . . . . . . . . . .	L 	 0000027C _TEXT	
+  ANS0 . . . . . . . . . . . . .	L 	 00000292 _TEXT	
+  ENDIF1 . . . . . . . . . . . .	L 	 000002A4 _TEXT	
+  ENDIF2 . . . . . . . . . . . .	L 	 000002BD _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+DIVISOR  . . . . . . . . . . . .	Number	 00000014h   
+answer0  . . . . . . . . . . . .	Byte	 00000058 _DATA	
+answer10 . . . . . . . . . . . .	Byte	 0000014F _DATA	
+answer11 . . . . . . . . . . . .	Byte	 00000158 _DATA	
+answer12 . . . . . . . . . . . .	Byte	 0000016A _DATA	
+answer13 . . . . . . . . . . . .	Byte	 00000186 _DATA	
+answer14 . . . . . . . . . . . .	Byte	 0000019E _DATA	
+answer15 . . . . . . . . . . . .	Byte	 000001AB _DATA	
+answer16 . . . . . . . . . . . .	Byte	 000001BF _DATA	
+answer17 . . . . . . . . . . . .	Byte	 000001D7 _DATA	
+answer18 . . . . . . . . . . . .	Byte	 000001F6 _DATA	
+answer19 . . . . . . . . . . . .	Byte	 0000021E _DATA	
+answer1  . . . . . . . . . . . .	Byte	 00000080 _DATA	
+answer20 . . . . . . . . . . . .	Byte	 00000238 _DATA	
+answer2  . . . . . . . . . . . .	Byte	 000000A0 _DATA	
+answer3  . . . . . . . . . . . .	Byte	 000000B4 _DATA	
+answer4  . . . . . . . . . . . .	Byte	 000000CB _DATA	
+answer5  . . . . . . . . . . . .	Byte	 000000EE _DATA	
+answer6  . . . . . . . . . . . .	Byte	 00000101 _DATA	
+answer7  . . . . . . . . . . . .	Byte	 00000123 _DATA	
+answer8  . . . . . . . . . . . .	Byte	 00000125 _DATA	
+answer9  . . . . . . . . . . . .	Byte	 00000127 _DATA	
+buffer . . . . . . . . . . . . .	QWord	 00000050 _DATA	
+keyVal . . . . . . . . . . . . .	QWord	 00000048 _DATA	
+prompt1  . . . . . . . . . . . .	Byte	 00000000 _DATA	
+prompt2  . . . . . . . . . . . .	Byte	 0000001A _DATA	
+prompt3  . . . . . . . . . . . .	Byte	 00000033 _DATA	
+
+	   0 Warnings
+	   0 Errors
